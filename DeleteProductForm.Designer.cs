@@ -74,7 +74,7 @@
             this.MinimizeBox = false;
             this.Name = "DeleteProductForm";
             this.ShowIcon = false;
-            this.Text = "Podaj nazwę produktu, który chesz usunąć:";
+            this.Text = "Podaj nazwę produktu, który chesz usunąć";
             this.ResumeLayout(false);
             this.PerformLayout();
 
