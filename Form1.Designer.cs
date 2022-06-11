@@ -141,7 +141,7 @@
             // 
             // saveToDatabaseButton
             // 
-            this.saveToDatabaseButton.Location = new System.Drawing.Point(454, 460);
+            this.saveToDatabaseButton.Location = new System.Drawing.Point(456, 460);
             this.saveToDatabaseButton.Name = "saveToDatabaseButton";
             this.saveToDatabaseButton.Size = new System.Drawing.Size(158, 38);
             this.saveToDatabaseButton.TabIndex = 15;
@@ -150,7 +150,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(656, 460);
+            this.button2.Location = new System.Drawing.Point(657, 460);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(132, 38);
             this.button2.TabIndex = 16;
