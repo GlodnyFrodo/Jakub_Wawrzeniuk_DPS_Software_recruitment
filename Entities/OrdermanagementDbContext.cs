@@ -9,7 +9,7 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment.Entities
 {
     internal class OrdermanagementDbContext : DbContext
     {
-        private string _connectionString = "Server=(localdb)\\mssqllocaldb;Database=OrderManagementSystemDb;Trusted_Connection=True;";
+        private string _connectionString = "Server=DESKTOP-FGSDN55\\RECRUITMENTJW;Database=OrderManagementSystemDb;Trusted_Connection=True;";
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
 

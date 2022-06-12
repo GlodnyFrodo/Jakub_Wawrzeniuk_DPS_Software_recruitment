@@ -17,5 +17,24 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
             InitializeComponent();
         }
 
+ 
+
+        private void addProductButton_Click(object sender, EventArgs e)
+        {
+            var newForm = new AddProductForm(nameTextBox, surnameTextBox, dateOfBirthTextBox);
+            newForm.Show();
+        }
+
+        private void deleteProductButton_Click(object sender, EventArgs e)
+        {
+            var newForm = new DeleteProductForm();
+            newForm.Show();
+        }
+
+        private void changeProductButton_Click(object sender, EventArgs e)
+        {
+            var newForm = new ModifyProductForm();
+            newForm.Show();
+        }
     }
 }

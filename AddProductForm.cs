@@ -16,5 +16,10 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
         {
             InitializeComponent();
         }
+
+        private void AddProductForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

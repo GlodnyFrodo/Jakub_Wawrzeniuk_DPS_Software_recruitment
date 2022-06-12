@@ -31,14 +31,14 @@
             this.nameLabel = new System.Windows.Forms.Label();
             this.dateOfBirthLabel = new System.Windows.Forms.Label();
             this.surnameLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.dateOfBirthTextBox = new System.Windows.Forms.TextBox();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.surnameTextBox = new System.Windows.Forms.TextBox();
             this.addProductButton = new System.Windows.Forms.Button();
             this.changeProductButton = new System.Windows.Forms.Button();
             this.deleteProductButton = new System.Windows.Forms.Button();
             this.orderedProductsLabel = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.displayProductsTextBox = new System.Windows.Forms.TextBox();
             this.saveToDatabaseButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -73,26 +73,26 @@
             this.surnameLabel.TabIndex = 2;
             this.surnameLabel.Text = "Nazwisko";
             // 
-            // textBox1
+            // dateOfBirthTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(148, 70);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(317, 25);
-            this.textBox1.TabIndex = 6;
+            this.dateOfBirthTextBox.Location = new System.Drawing.Point(148, 70);
+            this.dateOfBirthTextBox.Name = "dateOfBirthTextBox";
+            this.dateOfBirthTextBox.Size = new System.Drawing.Size(317, 25);
+            this.dateOfBirthTextBox.TabIndex = 6;
             // 
-            // textBox2
+            // nameTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(148, 6);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(317, 25);
-            this.textBox2.TabIndex = 7;
+            this.nameTextBox.Location = new System.Drawing.Point(148, 6);
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.Size = new System.Drawing.Size(317, 25);
+            this.nameTextBox.TabIndex = 7;
             // 
-            // textBox3
+            // surnameTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(148, 38);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(317, 25);
-            this.textBox3.TabIndex = 8;
+            this.surnameTextBox.Location = new System.Drawing.Point(148, 38);
+            this.surnameTextBox.Name = "surnameTextBox";
+            this.surnameTextBox.Size = new System.Drawing.Size(317, 25);
+            this.surnameTextBox.TabIndex = 8;
             // 
             // addProductButton
             // 
@@ -102,6 +102,7 @@
             this.addProductButton.TabIndex = 9;
             this.addProductButton.Text = "Dodaj produkt";
             this.addProductButton.UseVisualStyleBackColor = true;
+            this.addProductButton.Click += new System.EventHandler(this.addProductButton_Click);
             // 
             // changeProductButton
             // 
@@ -111,6 +112,7 @@
             this.changeProductButton.TabIndex = 10;
             this.changeProductButton.Text = "Zmień produkt";
             this.changeProductButton.UseVisualStyleBackColor = true;
+            this.changeProductButton.Click += new System.EventHandler(this.changeProductButton_Click);
             // 
             // deleteProductButton
             // 
@@ -120,6 +122,7 @@
             this.deleteProductButton.TabIndex = 11;
             this.deleteProductButton.Text = "Usuń produkt";
             this.deleteProductButton.UseVisualStyleBackColor = true;
+            this.deleteProductButton.Click += new System.EventHandler(this.deleteProductButton_Click);
             // 
             // orderedProductsLabel
             // 
@@ -130,14 +133,14 @@
             this.orderedProductsLabel.TabIndex = 13;
             this.orderedProductsLabel.Text = "Zamówione produkty:";
             // 
-            // textBox4
+            // displayProductsTextBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(15, 192);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox4.Size = new System.Drawing.Size(774, 255);
-            this.textBox4.TabIndex = 14;
+            this.displayProductsTextBox.Location = new System.Drawing.Point(15, 192);
+            this.displayProductsTextBox.Multiline = true;
+            this.displayProductsTextBox.Name = "displayProductsTextBox";
+            this.displayProductsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.displayProductsTextBox.Size = new System.Drawing.Size(774, 255);
+            this.displayProductsTextBox.TabIndex = 14;
             // 
             // saveToDatabaseButton
             // 
@@ -165,14 +168,14 @@
             this.ClientSize = new System.Drawing.Size(800, 510);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.saveToDatabaseButton);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.displayProductsTextBox);
             this.Controls.Add(this.orderedProductsLabel);
             this.Controls.Add(this.deleteProductButton);
             this.Controls.Add(this.changeProductButton);
             this.Controls.Add(this.addProductButton);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.surnameTextBox);
+            this.Controls.Add(this.nameTextBox);
+            this.Controls.Add(this.dateOfBirthTextBox);
             this.Controls.Add(this.surnameLabel);
             this.Controls.Add(this.dateOfBirthLabel);
             this.Controls.Add(this.nameLabel);
@@ -189,14 +192,14 @@
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Label dateOfBirthLabel;
         private System.Windows.Forms.Label surnameLabel;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox dateOfBirthTextBox;
+        private System.Windows.Forms.TextBox nameTextBox;
+        private System.Windows.Forms.TextBox surnameTextBox;
         private System.Windows.Forms.Button addProductButton;
         private System.Windows.Forms.Button changeProductButton;
         private System.Windows.Forms.Button deleteProductButton;
         private System.Windows.Forms.Label orderedProductsLabel;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox displayProductsTextBox;
         private System.Windows.Forms.Button saveToDatabaseButton;
         private System.Windows.Forms.Button button2;
     }
