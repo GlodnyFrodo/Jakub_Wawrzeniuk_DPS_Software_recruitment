@@ -15,7 +15,14 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
         public MainForm()
         {
             InitializeComponent();
-            
+
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            displayProductsListView.View = View.Details;
+            ButtonEnable();
+            displayProductsListView.LabelEdit = true;
         }
 
         private void ButtonEnable()
@@ -26,11 +33,11 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
 
         private void addProductButton_Click(object sender, EventArgs e)
         {
-            using(AddProductForm form = new AddProductForm())
+            using (AddProductForm form = new AddProductForm())
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    string[] row = {form.PriceValue, form.AmountValue};
+                    string[] row = { form.PriceValue, form.AmountValue };
 
                     displayProductsListView.Items.Add(form.ProductNameValue).SubItems.AddRange(row);
                     ButtonEnable();
@@ -51,7 +58,7 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
                         {
                             displayProductsListView.Items.Remove(eachItem);
                         }
-                        
+
                     }
                     ButtonEnable();
 
@@ -77,13 +84,22 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
                 }
             }
         }
-
-        private void MainForm_Load(object sender, EventArgs e)
+        private static string filename = "products.xml";
+        private void saveToXmlButton_Click(object sender, EventArgs e)
         {
-            displayProductsListView.View = View.Details;
-            ButtonEnable();
-            displayProductsListView.LabelEdit = true;
-        }
+            Entities.Product[] selectedProducts = new Entities.Product[0];
+            foreach (ListViewItem eachItem in displayProductsListView.Items)
+            {
+                Entities.Product p = new Entities.Product(eachItem.Text, Convert.ToDecimal(eachItem.SubItems[2].Text), Convert.ToDouble(eachItem.SubItems[1].Text));
+                Array.Resize(ref selectedProducts, selectedProducts.Length + 1);
+                selectedProducts[selectedProducts.Length - 1] = p;
+            }
+            if (!String.IsNullOrEmpty(String.Concat(nameTextBox.Text.Where(c => !Char.IsWhiteSpace(c)))) && !String.IsNullOrEmpty(String.Concat(surnameTextBox.Text.Where(c => !Char.IsWhiteSpace(c)))) && !String.IsNullOrEmpty(String.Concat(dateOfBirthTextBox.Text.Where(c => !Char.IsWhiteSpace(c)))))
+            {
+                Entities.Order[] Order = new Entities.Order(nameTextBox,surnameTextBox, dateOfBirthTextBox, selectedProducts);
+            }
 
+        }
     }
 }
+

@@ -16,6 +16,14 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment.Entities
 
         public DateTime DateOfBirth { get; set; }
 
-        public virtual List<Product> Products { get; set; }
+        public virtual Product[] Products { get; set; }
+
+        public Order(string name, string surname, DateTime dateOfBirth, Product[] products)
+        {
+            Name = name;
+            Surname = surname;
+            DateOfBirth = dateOfBirth;
+            Products = products;
+        }
     }
 }

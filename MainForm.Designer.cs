@@ -39,7 +39,7 @@
             this.deleteProductButton = new System.Windows.Forms.Button();
             this.orderedProductsLabel = new System.Windows.Forms.Label();
             this.saveToDatabaseButton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.saveToXmlButton = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.displayProductsListView = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
@@ -146,14 +146,15 @@
             this.saveToDatabaseButton.Text = "Zapisz do bazy danych";
             this.saveToDatabaseButton.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // saveToXmlButton
             // 
-            this.button2.Location = new System.Drawing.Point(657, 460);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(132, 38);
-            this.button2.TabIndex = 16;
-            this.button2.Text = "Zapisz do XML";
-            this.button2.UseVisualStyleBackColor = true;
+            this.saveToXmlButton.Location = new System.Drawing.Point(657, 460);
+            this.saveToXmlButton.Name = "saveToXmlButton";
+            this.saveToXmlButton.Size = new System.Drawing.Size(132, 38);
+            this.saveToXmlButton.TabIndex = 16;
+            this.saveToXmlButton.Text = "Zapisz do XML";
+            this.saveToXmlButton.UseVisualStyleBackColor = true;
+            this.saveToXmlButton.Click += new System.EventHandler(this.saveToXmlButton_Click);
             // 
             // displayProductsListView
             // 
@@ -191,7 +192,7 @@
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(800, 510);
             this.Controls.Add(this.displayProductsListView);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.saveToXmlButton);
             this.Controls.Add(this.saveToDatabaseButton);
             this.Controls.Add(this.orderedProductsLabel);
             this.Controls.Add(this.deleteProductButton);
@@ -225,7 +226,7 @@
         private System.Windows.Forms.Button deleteProductButton;
         private System.Windows.Forms.Label orderedProductsLabel;
         private System.Windows.Forms.Button saveToDatabaseButton;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button saveToXmlButton;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.ListView displayProductsListView;
         private System.Windows.Forms.ColumnHeader columnHeader1;
