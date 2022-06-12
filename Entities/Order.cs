@@ -9,8 +9,7 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment.Entities
 {
     internal class Order
     {
-
-        public int OrderId { get; set; }
+        public uint OrderId { get; set; }
         public string Name { get; set; }
 
         public string Surname { get; set; }
@@ -18,6 +17,5 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment.Entities
         public DateTime DateOfBirth { get; set; }
 
         public virtual List<Product> Products { get; set; }
-
     }
 }

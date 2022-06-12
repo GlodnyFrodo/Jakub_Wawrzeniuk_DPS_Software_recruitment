@@ -87,6 +87,7 @@
             // 
             // addProductButton
             // 
+            this.addProductButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.addProductButton.Location = new System.Drawing.Point(18, 157);
             this.addProductButton.Name = "addProductButton";
             this.addProductButton.Size = new System.Drawing.Size(119, 47);
@@ -96,7 +97,7 @@
             // 
             // AddProductForm
             // 
-            this.AccessibleRole = System.Windows.Forms.AccessibleRole.Alert;
+            this.AcceptButton = this.addProductButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -116,7 +117,6 @@
             this.Name = "AddProductForm";
             this.ShowIcon = false;
             this.Text = "Wprowadź dane produktu:";
-            this.Load += new System.EventHandler(this.AddProductForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

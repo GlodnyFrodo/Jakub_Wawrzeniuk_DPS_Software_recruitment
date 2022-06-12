@@ -16,5 +16,13 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
         {
             InitializeComponent();
         }
+
+        public string ProductNameToDelete
+        {
+            get
+            {
+                return productNameDeleteTextBox.Text;
+            }
+        }
     }
 }

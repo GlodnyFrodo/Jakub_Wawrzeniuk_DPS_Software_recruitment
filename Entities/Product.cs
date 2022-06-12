@@ -12,7 +12,7 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment.Entities
         public string ProductName { get; set; }
         public decimal Price { get; set; }
 
-        public uint Amount { get; set; }
+        public double Amount { get; set; }
 
         public int OrderId { get; set; }
         public virtual Order Order { get; set; }

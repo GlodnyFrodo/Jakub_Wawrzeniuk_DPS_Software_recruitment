@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.addProductButton = new System.Windows.Forms.Button();
+            this.modifyProductButton = new System.Windows.Forms.Button();
             this.priceTextBox = new System.Windows.Forms.TextBox();
             this.amountTextBox = new System.Windows.Forms.TextBox();
             this.productNameTextBox = new System.Windows.Forms.TextBox();
@@ -37,14 +37,15 @@
             this.productNameLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // addProductButton
+            // modifyProductButton
             // 
-            this.addProductButton.Location = new System.Drawing.Point(20, 145);
-            this.addProductButton.Name = "addProductButton";
-            this.addProductButton.Size = new System.Drawing.Size(119, 47);
-            this.addProductButton.TabIndex = 13;
-            this.addProductButton.Text = "Modyfikuj";
-            this.addProductButton.UseVisualStyleBackColor = true;
+            this.modifyProductButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.modifyProductButton.Location = new System.Drawing.Point(20, 145);
+            this.modifyProductButton.Name = "modifyProductButton";
+            this.modifyProductButton.Size = new System.Drawing.Size(119, 47);
+            this.modifyProductButton.TabIndex = 13;
+            this.modifyProductButton.Text = "Modyfikuj";
+            this.modifyProductButton.UseVisualStyleBackColor = true;
             // 
             // priceTextBox
             // 
@@ -96,12 +97,12 @@
             // 
             // ModifyProductForm
             // 
-            this.AccessibleRole = System.Windows.Forms.AccessibleRole.Alert;
+            this.AcceptButton = this.modifyProductButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(439, 213);
-            this.Controls.Add(this.addProductButton);
+            this.Controls.Add(this.modifyProductButton);
             this.Controls.Add(this.priceTextBox);
             this.Controls.Add(this.amountTextBox);
             this.Controls.Add(this.productNameTextBox);
@@ -110,7 +111,7 @@
             this.Controls.Add(this.productNameLabel);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ModifyProductForm";
@@ -123,7 +124,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button addProductButton;
+        private System.Windows.Forms.Button modifyProductButton;
         private System.Windows.Forms.TextBox priceTextBox;
         private System.Windows.Forms.TextBox amountTextBox;
         private System.Windows.Forms.TextBox productNameTextBox;

@@ -10,8 +10,8 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment.Entities
     internal class OrdermanagementDbContext : DbContext
     {
         private string _connectionString = "Server=DESKTOP-FGSDN55\\RECRUITMENTJW;Database=OrderManagementSystemDb;Trusted_Connection=True;";
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Order> Orders { get; set; }
+        public DbSet<Product>? Products { get; set; }
+        public DbSet<Order>? Orders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

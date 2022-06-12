@@ -52,6 +52,7 @@
             // 
             // productNameDeleteButton
             // 
+            this.productNameDeleteButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.productNameDeleteButton.Location = new System.Drawing.Point(13, 105);
             this.productNameDeleteButton.Name = "productNameDeleteButton";
             this.productNameDeleteButton.Size = new System.Drawing.Size(103, 43);
@@ -61,6 +62,7 @@
             // 
             // DeleteProductForm
             // 
+            this.AcceptButton = this.productNameDeleteButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -69,7 +71,7 @@
             this.Controls.Add(this.productNameDeleteTextBox);
             this.Controls.Add(this.productNameDeleteLabel);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "DeleteProductForm";

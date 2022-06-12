@@ -16,5 +16,29 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
         {
             InitializeComponent();
         }
+
+        public string ProductNameToModify
+        {
+            get
+            {
+                return productNameTextBox.Text;
+            }
+        }
+
+        public string PriceToModify
+        {
+            get
+            {
+                return priceTextBox.Text;
+            }
+        }
+
+        public string AmountToModify
+        {
+            get
+            {
+                return amountTextBox.Text;
+            }
+        }
     }
 }

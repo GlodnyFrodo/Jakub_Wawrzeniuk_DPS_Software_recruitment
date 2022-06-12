@@ -18,7 +18,7 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new orderManagementSystemForm());
+            Application.Run(new MainForm());
         }
     }
 }

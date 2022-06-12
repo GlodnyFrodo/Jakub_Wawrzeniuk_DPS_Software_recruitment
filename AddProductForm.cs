@@ -16,10 +16,31 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
         {
             InitializeComponent();
         }
+        public delegate void delPassData(TextBox productName, TextBox price, TextBox amount);
 
-        private void AddProductForm_Load(object sender, EventArgs e)
+        public string ProductNameValue  
         {
-
+            get
+            {
+                return productNameTextBox.Text;
+            }
         }
+
+        public string PriceValue
+        {
+            get
+            {
+                return priceTextBox.Text;
+            }
+        }
+
+        public string AmountValue
+        {
+            get
+            {
+                return amountTextBox.Text;
+            }
+        }
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
 {
-    partial class orderManagementSystemForm
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -35,12 +35,16 @@
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.surnameTextBox = new System.Windows.Forms.TextBox();
             this.addProductButton = new System.Windows.Forms.Button();
-            this.changeProductButton = new System.Windows.Forms.Button();
+            this.modifyProductButton = new System.Windows.Forms.Button();
             this.deleteProductButton = new System.Windows.Forms.Button();
             this.orderedProductsLabel = new System.Windows.Forms.Label();
-            this.displayProductsTextBox = new System.Windows.Forms.TextBox();
             this.saveToDatabaseButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.displayProductsListView = new System.Windows.Forms.ListView();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
             // 
             // nameLabel
@@ -104,15 +108,15 @@
             this.addProductButton.UseVisualStyleBackColor = true;
             this.addProductButton.Click += new System.EventHandler(this.addProductButton_Click);
             // 
-            // changeProductButton
+            // modifyProductButton
             // 
-            this.changeProductButton.Location = new System.Drawing.Point(372, 120);
-            this.changeProductButton.Name = "changeProductButton";
-            this.changeProductButton.Size = new System.Drawing.Size(132, 38);
-            this.changeProductButton.TabIndex = 10;
-            this.changeProductButton.Text = "Zmień produkt";
-            this.changeProductButton.UseVisualStyleBackColor = true;
-            this.changeProductButton.Click += new System.EventHandler(this.changeProductButton_Click);
+            this.modifyProductButton.Location = new System.Drawing.Point(372, 120);
+            this.modifyProductButton.Name = "modifyProductButton";
+            this.modifyProductButton.Size = new System.Drawing.Size(132, 38);
+            this.modifyProductButton.TabIndex = 10;
+            this.modifyProductButton.Text = "Zmień produkt";
+            this.modifyProductButton.UseVisualStyleBackColor = true;
+            this.modifyProductButton.Click += new System.EventHandler(this.changeProductButton_Click);
             // 
             // deleteProductButton
             // 
@@ -133,15 +137,6 @@
             this.orderedProductsLabel.TabIndex = 13;
             this.orderedProductsLabel.Text = "Zamówione produkty:";
             // 
-            // displayProductsTextBox
-            // 
-            this.displayProductsTextBox.Location = new System.Drawing.Point(15, 192);
-            this.displayProductsTextBox.Multiline = true;
-            this.displayProductsTextBox.Name = "displayProductsTextBox";
-            this.displayProductsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.displayProductsTextBox.Size = new System.Drawing.Size(774, 255);
-            this.displayProductsTextBox.TabIndex = 14;
-            // 
             // saveToDatabaseButton
             // 
             this.saveToDatabaseButton.Location = new System.Drawing.Point(456, 460);
@@ -160,18 +155,47 @@
             this.button2.Text = "Zapisz do XML";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // orderManagementSystemForm
+            // displayProductsListView
+            // 
+            this.displayProductsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.displayProductsListView.HideSelection = false;
+            this.displayProductsListView.Location = new System.Drawing.Point(12, 192);
+            this.displayProductsListView.Name = "displayProductsListView";
+            this.displayProductsListView.Size = new System.Drawing.Size(777, 262);
+            this.displayProductsListView.TabIndex = 17;
+            this.displayProductsListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Tag = "";
+            this.columnHeader1.Text = "Nazwa produktu";
+            this.columnHeader1.Width = 350;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Ilość";
+            this.columnHeader2.Width = 250;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Cena";
+            this.columnHeader3.Width = 173;
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(800, 510);
+            this.Controls.Add(this.displayProductsListView);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.saveToDatabaseButton);
-            this.Controls.Add(this.displayProductsTextBox);
             this.Controls.Add(this.orderedProductsLabel);
             this.Controls.Add(this.deleteProductButton);
-            this.Controls.Add(this.changeProductButton);
+            this.Controls.Add(this.modifyProductButton);
             this.Controls.Add(this.addProductButton);
             this.Controls.Add(this.surnameTextBox);
             this.Controls.Add(this.nameTextBox);
@@ -180,8 +204,9 @@
             this.Controls.Add(this.dateOfBirthLabel);
             this.Controls.Add(this.nameLabel);
             this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Name = "orderManagementSystemForm";
+            this.Name = "MainForm";
             this.Text = "Order management system";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,11 +221,15 @@
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.TextBox surnameTextBox;
         private System.Windows.Forms.Button addProductButton;
-        private System.Windows.Forms.Button changeProductButton;
+        private System.Windows.Forms.Button modifyProductButton;
         private System.Windows.Forms.Button deleteProductButton;
         private System.Windows.Forms.Label orderedProductsLabel;
-        private System.Windows.Forms.TextBox displayProductsTextBox;
         private System.Windows.Forms.Button saveToDatabaseButton;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.ListView displayProductsListView;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }
