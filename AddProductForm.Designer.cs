@@ -86,8 +86,7 @@
             this.priceTextBox.PlaceholderText = "0,00";
             this.priceTextBox.Size = new System.Drawing.Size(230, 29);
             this.priceTextBox.TabIndex = 5;
-            this.priceTextBox.Enter += new System.EventHandler(this.priceTextBox_Enter);
-            this.priceTextBox.Leave += new System.EventHandler(this.priceTextBox_Leave);
+
             // 
             // addProductButton
             // 

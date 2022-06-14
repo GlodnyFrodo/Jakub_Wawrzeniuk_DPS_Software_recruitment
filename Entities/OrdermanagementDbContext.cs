@@ -23,5 +23,6 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment.Entities
             optionsBuilder.UseSqlServer(_connectionString);
         }
 
+
     }
 }

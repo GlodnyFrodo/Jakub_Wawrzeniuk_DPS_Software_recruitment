@@ -42,22 +42,5 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
             }
         }
 
-        private void priceTextBox_Enter(object sender, EventArgs e)
-        {
-            if (priceTextBox.Text == "0,00")
-            {
-                priceTextBox.Text = "";
-                priceTextBox.ForeColor = Color.Black;
-            }
-        }
-
-        private void priceTextBox_Leave(object sender, EventArgs e)
-        {
-            if (priceTextBox.Text == "")
-            {
-                priceTextBox.Text = "0,00";
-                priceTextBox.ForeColor = Color.Silver;
-            }
-        }
     }
 }

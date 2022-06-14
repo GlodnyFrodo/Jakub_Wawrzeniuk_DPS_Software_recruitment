@@ -49,7 +49,7 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
                 {
                     decimal price;
                     double amount;
-                    if (Decimal.TryParse(form.PriceValue, out price) && Double.TryParse(form.AmountValue, out amount) && price > 0 && amount > 0)
+                    if (Decimal.TryParse(form.PriceValue, out price) && Double.TryParse(form.AmountValue, out amount) && price > 0 && amount > 0 && form.ProductName != "")
                     {
                         string[] row = { form.AmountValue, form.PriceValue };
 
@@ -92,7 +92,7 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
                 {
                     decimal price;
                     double amount;
-                    if (Decimal.TryParse(form.PriceToModify, out price) && Double.TryParse(form.AmountToModify, out amount) && price > 0 && amount > 0)
+                    if (Decimal.TryParse(form.PriceToModify, out price) && Double.TryParse(form.AmountToModify, out amount) && price > 0 && amount > 0 && form.ProductName != "" )
                     {
                         foreach (ListViewItem eachItem in displayProductsListView.Items)
                         {
