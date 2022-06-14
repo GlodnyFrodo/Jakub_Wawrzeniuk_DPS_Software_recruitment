@@ -31,6 +31,12 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment.Entities
             Price = price;
             Amount = amount;
         }
+        public Product( Product p, int OrderId, Order Order)
+        {
+            ProductName = p.ProductName;
+            Price = p.Price;
+            Amount = p.Amount;
+        }
         public Product() { }
 
         public static void Serialize(Product[] products, string filename)

@@ -12,7 +12,7 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment.Entities
     public class Order
     {
         [XmlAttribute ("OrderID")]
-        public uint Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
 
         public string Surname { get; set; }
@@ -20,9 +20,9 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment.Entities
         public DateTime DateOfBirth { get; set; }
         [XmlArray("Products")]
         [XmlArrayItem("ProductReading")]
-        public virtual Product[] Products { get; set; }
+        public virtual List<Product> Products { get; set; }
 
-        public Order(uint OrderId, string name, string surname, DateTime dateOfBirth, Product[] products)
+        public Order(int OrderId, string name, string surname, DateTime dateOfBirth, List<Product> products)
         {
             this.Id = OrderId;
             Name = name;
@@ -30,10 +30,21 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment.Entities
             DateOfBirth = dateOfBirth;
             Products = products;
         }
-        public Order()
+        public Order(Order o)
         {
-
+            Name = o.Name;
+            Surname = o.Surname;
+            DateOfBirth = o.DateOfBirth;
+            Products = o.Products;
         }
+        public Order( Order o, List<Product> products)
+        {
+            Name = o.Name;
+            Surname = o.Surname;
+            DateOfBirth = o.DateOfBirth;
+            Products = products;
+        }
+        public Order(){}
 
         public static void Serialize(Order order, string filename)
         {

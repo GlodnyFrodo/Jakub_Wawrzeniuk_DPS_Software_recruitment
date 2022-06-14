@@ -150,6 +150,7 @@
             this.saveToDatabaseButton.TabIndex = 15;
             this.saveToDatabaseButton.Text = "Zapisz do bazy danych";
             this.saveToDatabaseButton.UseVisualStyleBackColor = true;
+            this.saveToDatabaseButton.Click += new System.EventHandler(this.saveToDatabaseButton_Click);
             // 
             // saveToXmlButton
             // 

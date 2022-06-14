@@ -129,10 +129,10 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
 
             return selectedProducts;
         }
-        uint OrderId = 0;
+        int OrderId = 0;
         private Entities.Order CreateOrder()
         {
-                Entities.Order order = new Entities.Order(OrderId, nameTextBox.Text, surnameTextBox.Text, Convert.ToDateTime(dateOfBirthTextBox.Text), CreateProducts());
+                Entities.Order order = new Entities.Order(OrderId, nameTextBox.Text, surnameTextBox.Text, Convert.ToDateTime(dateOfBirthTextBox.Text), CreateProducts().ToList());
                 OrderId++;
                 return order;
             }
@@ -209,6 +209,27 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
             ButtonEnable();
         }
 
+        private void saveToDatabaseButton_Click(object sender, EventArgs e)
+        {
+
+            using (var context = new Entities.OrdermanagementDbContext())
+            {
+                Entities.Order o1 = new Entities.Order(CreateOrder());
+                List<Entities.Product> products = new List<Entities.Product>();
+                foreach (Entities.Product p in CreateProducts())
+                {
+                    ;
+                    Entities.Product p1 = new Entities.Product(p, o1.Id, o1);
+                    context.Products.Add(p1);
+                    products.Add(p1);
+                    context.SaveChanges();
+
+                }
+                o1 = new Entities.Order(o1, products);
+                context.Orders.Add(o1);
+                context.SaveChanges();
+            }
+        }
     }
 }
 
