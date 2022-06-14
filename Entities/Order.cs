@@ -11,7 +11,8 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment.Entities
     [XmlRoot("OrderInfo")]
     public class Order
     {
-        public uint OrderId { get; set; }
+        [XmlAttribute ("OrderID")]
+        public uint Id { get; set; }
         public string Name { get; set; }
 
         public string Surname { get; set; }
@@ -23,17 +24,21 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment.Entities
 
         public Order(uint OrderId, string name, string surname, DateTime dateOfBirth, Product[] products)
         {
-            this.OrderId = OrderId;
+            this.Id = OrderId;
             Name = name;
             Surname = surname;
             DateOfBirth = dateOfBirth;
             Products = products;
         }
+        public Order()
+        {
+
+        }
 
         public static void Serialize(Order order, string filename)
         {
             FileStream fs = null;
-            XmlSerializer serializer = new XmlSerializer(typeof(Entities.Product));
+            XmlSerializer serializer = new XmlSerializer(typeof(Entities.Order));
 
             try
             {

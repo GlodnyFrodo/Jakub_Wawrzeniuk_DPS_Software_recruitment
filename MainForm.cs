@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,8 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
         private void ButtonEnable()
         {
             this.deleteProductButton.Enabled = (this.displayProductsListView.Items.Count > 0);
+            this.saveToXmlButton.Enabled = (this.displayProductsListView.Items.Count > 0);
+            this.saveToDatabaseButton.Enabled = (this.displayProductsListView.Items.Count > 0);
             this.modifyProductButton.Enabled = (this.displayProductsListView.Items.Count > 0);
         }
 
@@ -91,10 +94,6 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
             Entities.Product[] selectedProducts = new Entities.Product[0];
             foreach (ListViewItem eachItem in displayProductsListView.Items)
             {
-
-                //string message = $"{eachItem.Text} {eachItem.SubItems[2].Text} {eachItem.SubItems[1].Text}";
-                //MessageBox.Show(message);
-
                 Entities.Product p = new Entities.Product(id, eachItem.Text, Convert.ToDecimal(eachItem.SubItems[2].Text), Convert.ToDouble(eachItem.SubItems[1].Text));
                 Array.Resize(ref selectedProducts, selectedProducts.Length + 1);
                 selectedProducts[selectedProducts.Length - 1] = p;
@@ -117,22 +116,39 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
         private static string filenameForOrder = "order.xml";
         private void saveToXmlButton_Click(object sender, EventArgs e)
         {
+            string folder = "";
+            using (var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+                
 
-            
-            if (!String.IsNullOrEmpty(String.Concat(nameTextBox.Text.Where(c => !Char.IsWhiteSpace(c)))) && !String.IsNullOrEmpty(String.Concat(surnameTextBox.Text.Where(c => !Char.IsWhiteSpace(c)))) && !String.IsNullOrEmpty(String.Concat(dateOfBirthTextBox.Text.Where(c => !Char.IsWhiteSpace(c)))))
-            {
-                Entities.Product.Serialize(CreateProducts(), filenameForProducts);
-                Entities.Order.Serialize(CreateOrder(), filenameForOrder);
-                displayProductsListView.Clear();
-                string message = $"Zapisano do XML";
-                MessageBox.Show(message);
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    folder = @"" + fbd.SelectedPath + @"\";
+
+                }
+                else
+                {
+                    string error = $"Błędne dane zamówienia";
+                    MessageBox.Show(error);
+                }
             }
-            else
+            using (SaveToXmlForm form = new SaveToXmlForm())
             {
-                string error = $"Błędne dane zamówienia";
-                MessageBox.Show(error);
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    filenameForProducts = folder + "products.xml";
+                    filenameForOrder = folder + "order.xml";
+
+                    Entities.Product.Serialize(CreateProducts(), filenameForProducts);
+                    Entities.Order.Serialize(CreateOrder(), filenameForOrder);
+                    displayProductsListView.Items.Clear();
+                    string message = $"Zapisano do XML";
+                    MessageBox.Show(message);
+                    displayProductsListView.View = View.Details;
+
+                }
             }
-            
         }
     }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<OrderInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" OrderID="0">
+  <Name>Janusz</Name>
+  <Surname>Bąk</Surname>
+  <DateOfBirth>2012-09-23T00:00:00</DateOfBirth>
+  <Products>
+    <ProductReading>
+      <Id>0</Id>
+      <ProductName>Mleko</ProductName>
+      <Price>4</Price>
+      <Amount>2</Amount>
+    </ProductReading>
+    <ProductReading>
+      <Id>1</Id>
+      <ProductName>Kapusta</ProductName>
+      <Price>5</Price>
+      <Amount>7</Amount>
+    </ProductReading>
+  </Products>
+</OrderInfo>
