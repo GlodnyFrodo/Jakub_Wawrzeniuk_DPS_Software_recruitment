@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<ArrayOfProduct xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Product>
+    <Id>0</Id>
+    <ProductName>Masełko</ProductName>
+    <Price>12</Price>
+    <Amount>3</Amount>
+  </Product>
+  <Product>
+    <Id>1</Id>
+    <ProductName>Mydłko</ProductName>
+    <Price>3</Price>
+    <Amount>3</Amount>
+  </Product>
+  <Product>
+    <Id>2</Id>
+    <ProductName>Lizak</ProductName>
+    <Price>1</Price>
+    <Amount>7</Amount>
+  </Product>
+</ArrayOfProduct>

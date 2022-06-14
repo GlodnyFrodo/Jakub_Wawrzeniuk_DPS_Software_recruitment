@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Xml.Serialization;
 
 namespace Jakub_Wawrzeniuk_DPS_Software_recruitment.Entities
 {
-    internal class Order
+    [XmlRoot("OrderInfo")]
+    public class Order
     {
         public uint OrderId { get; set; }
         public string Name { get; set; }
@@ -15,15 +17,38 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment.Entities
         public string Surname { get; set; }
 
         public DateTime DateOfBirth { get; set; }
-
+        [XmlArray("Products")]
+        [XmlArrayItem("ProductReading")]
         public virtual Product[] Products { get; set; }
 
-        public Order(string name, string surname, DateTime dateOfBirth, Product[] products)
+        public Order(uint OrderId, string name, string surname, DateTime dateOfBirth, Product[] products)
         {
+            this.OrderId = OrderId;
             Name = name;
             Surname = surname;
             DateOfBirth = dateOfBirth;
             Products = products;
+        }
+
+        public static void Serialize(Order order, string filename)
+        {
+            FileStream fs = null;
+            XmlSerializer serializer = new XmlSerializer(typeof(Entities.Product));
+
+            try
+            {
+                fs = new FileStream(filename, FileMode.Create);
+                serializer.Serialize(fs, order);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Błąd! {0}", e.Message);
+            }
+            finally
+            {
+                if (fs != null)
+                    fs.Close();
+            }
         }
     }
 }

@@ -37,7 +37,7 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    string[] row = { form.PriceValue, form.AmountValue };
+                    string[] row = { form.AmountValue, form.PriceValue};
 
                     displayProductsListView.Items.Add(form.ProductNameValue).SubItems.AddRange(row);
                     ButtonEnable();
@@ -76,29 +76,63 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
                     {
                         if (eachItem.Text == form.ProductNameToModify)
                         {
-                            eachItem.SubItems[1].Text = form.PriceToModify;
-                            eachItem.SubItems[2].Text = form.AmountToModify;
+                            eachItem.SubItems[2].Text = form.PriceToModify;
+                            eachItem.SubItems[1].Text = form.AmountToModify;
 
                         }
                     }
                 }
             }
         }
-        private static string filename = "products.xml";
-        private void saveToXmlButton_Click(object sender, EventArgs e)
+        
+        private Entities.Product[] CreateProducts()
         {
+            int id = 0;
             Entities.Product[] selectedProducts = new Entities.Product[0];
             foreach (ListViewItem eachItem in displayProductsListView.Items)
             {
-                Entities.Product p = new Entities.Product(eachItem.Text, Convert.ToDecimal(eachItem.SubItems[2].Text), Convert.ToDouble(eachItem.SubItems[1].Text));
+
+                //string message = $"{eachItem.Text} {eachItem.SubItems[2].Text} {eachItem.SubItems[1].Text}";
+                //MessageBox.Show(message);
+
+                Entities.Product p = new Entities.Product(id, eachItem.Text, Convert.ToDecimal(eachItem.SubItems[2].Text), Convert.ToDouble(eachItem.SubItems[1].Text));
                 Array.Resize(ref selectedProducts, selectedProducts.Length + 1);
                 selectedProducts[selectedProducts.Length - 1] = p;
-            }
-            if (!String.IsNullOrEmpty(String.Concat(nameTextBox.Text.Where(c => !Char.IsWhiteSpace(c)))) && !String.IsNullOrEmpty(String.Concat(surnameTextBox.Text.Where(c => !Char.IsWhiteSpace(c)))) && !String.IsNullOrEmpty(String.Concat(dateOfBirthTextBox.Text.Where(c => !Char.IsWhiteSpace(c)))))
-            {
-                Entities.Order[] Order = new Entities.Order(nameTextBox,surnameTextBox, dateOfBirthTextBox, selectedProducts);
+                id++;
             }
 
+            return selectedProducts;
+        }
+        uint OrderId = 0;
+        private Entities.Order CreateOrder()
+        {
+            
+                Entities.Order order = new Entities.Order(OrderId, nameTextBox.Text, surnameTextBox.Text, Convert.ToDateTime(dateOfBirthTextBox.Text), CreateProducts());
+                OrderId++;
+                return order;
+            }
+
+
+        private static string filenameForProducts = "products.xml";
+        private static string filenameForOrder = "order.xml";
+        private void saveToXmlButton_Click(object sender, EventArgs e)
+        {
+
+            
+            if (!String.IsNullOrEmpty(String.Concat(nameTextBox.Text.Where(c => !Char.IsWhiteSpace(c)))) && !String.IsNullOrEmpty(String.Concat(surnameTextBox.Text.Where(c => !Char.IsWhiteSpace(c)))) && !String.IsNullOrEmpty(String.Concat(dateOfBirthTextBox.Text.Where(c => !Char.IsWhiteSpace(c)))))
+            {
+                Entities.Product.Serialize(CreateProducts(), filenameForProducts);
+                Entities.Order.Serialize(CreateOrder(), filenameForOrder);
+                displayProductsListView.Clear();
+                string message = $"Zapisano do XML";
+                MessageBox.Show(message);
+            }
+            else
+            {
+                string error = $"Błędne dane zamówienia";
+                MessageBox.Show(error);
+            }
+            
         }
     }
 }
