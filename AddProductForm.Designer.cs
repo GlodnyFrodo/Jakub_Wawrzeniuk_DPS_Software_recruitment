@@ -80,12 +80,12 @@
             // 
             // priceTextBox
             // 
-            this.priceTextBox.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.priceTextBox.ForeColor = System.Drawing.SystemColors.Desktop;
             this.priceTextBox.Location = new System.Drawing.Point(172, 49);
             this.priceTextBox.Name = "priceTextBox";
+            this.priceTextBox.PlaceholderText = "0,00";
             this.priceTextBox.Size = new System.Drawing.Size(230, 29);
             this.priceTextBox.TabIndex = 5;
-            this.priceTextBox.Text = "0,00";
             this.priceTextBox.Enter += new System.EventHandler(this.priceTextBox_Enter);
             this.priceTextBox.Leave += new System.EventHandler(this.priceTextBox_Leave);
             // 

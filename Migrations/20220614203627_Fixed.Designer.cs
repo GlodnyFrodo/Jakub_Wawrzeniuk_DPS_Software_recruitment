@@ -4,14 +4,16 @@ using Jakub_Wawrzeniuk_DPS_Software_recruitment.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Jakub_Wawrzeniuk_DPS_Software_recruitment.Migrations
 {
     [DbContext(typeof(OrdermanagementDbContext))]
-    partial class OrdermanagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220614203627_Fixed")]
+    partial class Fixed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

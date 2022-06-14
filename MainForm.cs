@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,12 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
             InitializeComponent();
 
         }
-
+        private void ErrorMessage()
+        {
+            string error = $"Błędne dane zamówienia";
+            MessageBox.Show(error);
+            ButtonEnable();
+        }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -30,8 +36,8 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
         private void ButtonEnable()
         {
             this.deleteProductButton.Enabled = (this.displayProductsListView.Items.Count > 0);
-            this.saveToXmlButton.Enabled = (this.displayProductsListView.Items.Count > 0);
-            this.saveToDatabaseButton.Enabled = (this.displayProductsListView.Items.Count > 0);
+            this.saveToXmlButton.Enabled = (this.displayProductsListView.Items.Count > 0 && nameTextBox.Text != "" && surnameTextBox.Text != "" && dateOfBirthTextBox.Text != "");
+            this.saveToDatabaseButton.Enabled = (this.displayProductsListView.Items.Count > 0 && nameTextBox.Text != "" && surnameTextBox.Text != "" && dateOfBirthTextBox.Text != "");
             this.modifyProductButton.Enabled = (this.displayProductsListView.Items.Count > 0);
         }
 
@@ -41,11 +47,19 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    string[] row = { form.AmountValue, form.PriceValue};
+                    decimal price;
+                    double amount;
+                    if (Decimal.TryParse(form.PriceValue, out price) && Double.TryParse(form.AmountValue, out amount) && price > 0 && amount > 0)
+                    {
+                        string[] row = { form.AmountValue, form.PriceValue };
 
-                    displayProductsListView.Items.Add(form.ProductNameValue).SubItems.AddRange(row);
-                    ButtonEnable();
-
+                        displayProductsListView.Items.Add(form.ProductNameValue).SubItems.AddRange(row);
+                        ButtonEnable();
+                    }
+                    else
+                    {
+                        ErrorMessage();
+                    }
                 }
             }
         }
@@ -76,15 +90,27 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    foreach (ListViewItem eachItem in displayProductsListView.Items)
+                    decimal price;
+                    double amount;
+                    if (Decimal.TryParse(form.PriceToModify, out price) && Double.TryParse(form.AmountToModify, out amount) && price > 0 && amount > 0)
                     {
-                        if (eachItem.Text == form.ProductNameToModify)
+                        foreach (ListViewItem eachItem in displayProductsListView.Items)
                         {
-                            eachItem.SubItems[2].Text = form.PriceToModify;
-                            eachItem.SubItems[1].Text = form.AmountToModify;
+                            if (eachItem.Text == form.ProductNameToModify)
+                            {
+                                eachItem.SubItems[2].Text = form.PriceToModify;
+                                eachItem.SubItems[1].Text = form.AmountToModify;
 
+                            }
                         }
                     }
+                    else
+                    {
+                        ErrorMessage();
+                    }
+
+
+
                 }
             }
         }
@@ -120,27 +146,38 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
             using (var fbd = new FolderBrowserDialog())
             {
                 DialogResult result = fbd.ShowDialog();
-                
 
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                DateTime dateOfBirth;
+                if (DateTime.TryParse(dateOfBirthTextBox.Text, out dateOfBirth) && nameTextBox.Text != "" && surnameTextBox.Text != "" && nameTextBox.Text.Length > 1 && surnameTextBox.Text.Length > 1)
                 {
-                    folder = @"" + fbd.SelectedPath + @"\";
-                    filenameForProducts = folder + "products.xml";
-                    filenameForOrder = folder + "order.xml";
 
-                    Entities.Product.Serialize(CreateProducts(), filenameForProducts);
-                    Entities.Order.Serialize(CreateOrder(), filenameForOrder);
-                    displayProductsListView.Items.Clear();
-                    string message = $"Zapisano do XML";
-                    MessageBox.Show(message);
-                    displayProductsListView.View = View.Details;
 
+                    if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                    {
+                        folder = @"" + fbd.SelectedPath + @"\";
+                        filenameForProducts = folder + "products.xml";
+                        filenameForOrder = folder + "order.xml";
+
+                        Entities.Product.Serialize(CreateProducts(), filenameForProducts);
+                        Entities.Order.Serialize(CreateOrder(), filenameForOrder);
+                        displayProductsListView.Items.Clear();
+                        string message = $"Zapisano do XML";
+                        MessageBox.Show(message);
+                        displayProductsListView.View = View.Details;
+                        surnameTextBox.Text = "";
+                        dateOfBirthTextBox.Text = "";
+                        ButtonEnable();
+                    }
+                    else
+                    {
+                        ErrorMessage();
+                    }
                 }
                 else
                 {
-                    string error = $"Błędne dane zamówienia";
-                    MessageBox.Show(error);
+                    ErrorMessage();
                 }
+
             }
 
 
@@ -157,14 +194,21 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
             }
         }
 
-        private void dateOfBirthTextBox_Leave(object sender, EventArgs e)
+        private void nameTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (dateOfBirthTextBox.Text == "")
-            {
-                dateOfBirthTextBox.Text = "YYYY-MM-DD";
-                dateOfBirthTextBox.ForeColor = Color.Silver;
-            }
+            ButtonEnable();
         }
+
+        private void surnameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ButtonEnable();
+        }
+
+        private void dateOfBirthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ButtonEnable();
+        }
+
     }
 }
 

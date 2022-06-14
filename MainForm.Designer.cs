@@ -79,14 +79,13 @@
             // 
             // dateOfBirthTextBox
             // 
-            this.dateOfBirthTextBox.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.dateOfBirthTextBox.ForeColor = System.Drawing.SystemColors.Desktop;
             this.dateOfBirthTextBox.Location = new System.Drawing.Point(148, 70);
             this.dateOfBirthTextBox.Name = "dateOfBirthTextBox";
+            this.dateOfBirthTextBox.PlaceholderText = "YYYY-MM-DD";
             this.dateOfBirthTextBox.Size = new System.Drawing.Size(317, 25);
             this.dateOfBirthTextBox.TabIndex = 6;
-            this.dateOfBirthTextBox.Text = "YYYY-MM-DD";
-            this.dateOfBirthTextBox.Enter += new System.EventHandler(this.dateOfBirthTextBox_Enter);
-            this.dateOfBirthTextBox.Leave += new System.EventHandler(this.dateOfBirthTextBox_Leave);
+            this.dateOfBirthTextBox.TextChanged += new System.EventHandler(this.dateOfBirthTextBox_TextChanged);
             // 
             // nameTextBox
             // 
@@ -94,6 +93,7 @@
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(317, 25);
             this.nameTextBox.TabIndex = 7;
+            this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
             // 
             // surnameTextBox
             // 
@@ -101,6 +101,7 @@
             this.surnameTextBox.Name = "surnameTextBox";
             this.surnameTextBox.Size = new System.Drawing.Size(317, 25);
             this.surnameTextBox.TabIndex = 8;
+            this.surnameTextBox.TextChanged += new System.EventHandler(this.surnameTextBox_TextChanged);
             // 
             // addProductButton
             // 
