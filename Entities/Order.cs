@@ -28,7 +28,7 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment.Entities
             Name = name;
             Surname = surname;
             DateOfBirth = dateOfBirth;
-            Products = products;
+            //Products = products;
         }
         public Order(Order o)
         {

@@ -31,7 +31,15 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment.Entities
             Price = price;
             Amount = amount;
         }
-        public Product( Product p, int OrderId, Order Order)
+        public Product( Product p, Order Order)
+        {
+            ProductName = p.ProductName;
+            Price = p.Price;
+            Amount = p.Amount;
+            this.OrderId = Order.Id;
+            this.Order = Order;
+        }
+        public Product(Product p)
         {
             ProductName = p.ProductName;
             Price = p.Price;

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Jakub_Wawrzeniuk_DPS_Software_recruitment.Migrations
 {
     [DbContext(typeof(OrdermanagementDbContext))]
-    [Migration("20220614203627_Fixed")]
-    partial class Fixed
+    [Migration("20220614230207_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,10 +23,10 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment.Migrations
 
             modelBuilder.Entity("Jakub_Wawrzeniuk_DPS_Software_recruitment.Entities.Order", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
@@ -57,9 +57,6 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<long>("OrderId1")
-                        .HasColumnType("bigint");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -69,7 +66,7 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId1");
+                    b.HasIndex("OrderId");
 
                     b.ToTable("Products");
                 });
@@ -78,7 +75,7 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment.Migrations
                 {
                     b.HasOne("Jakub_Wawrzeniuk_DPS_Software_recruitment.Entities.Order", "Order")
                         .WithMany("Products")
-                        .HasForeignKey("OrderId1")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

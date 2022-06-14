@@ -37,7 +37,7 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
         {
             this.deleteProductButton.Enabled = (this.displayProductsListView.Items.Count > 0);
             this.saveToXmlButton.Enabled = (this.displayProductsListView.Items.Count > 0 && nameTextBox.Text != "" && surnameTextBox.Text != "" && dateOfBirthTextBox.Text != "");
-            this.saveToDatabaseButton.Enabled = (this.displayProductsListView.Items.Count > 0 && nameTextBox.Text != "" && surnameTextBox.Text != "" && dateOfBirthTextBox.Text != "");
+            //this.saveToDatabaseButton.Enabled = (this.displayProductsListView.Items.Count > 0 && nameTextBox.Text != "" && surnameTextBox.Text != "" && dateOfBirthTextBox.Text != "");
             this.modifyProductButton.Enabled = (this.displayProductsListView.Items.Count > 0);
         }
 
@@ -214,20 +214,28 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
 
             using (var context = new Entities.OrdermanagementDbContext())
             {
-                Entities.Order o1 = new Entities.Order(CreateOrder());
-                List<Entities.Product> products = new List<Entities.Product>();
-                foreach (Entities.Product p in CreateProducts())
+                DateTime dateOfBirth;
+                if (DateTime.TryParse(dateOfBirthTextBox.Text, out dateOfBirth) && nameTextBox.Text != "" && surnameTextBox.Text != "" && nameTextBox.Text.Length > 1 && surnameTextBox.Text.Length > 1)
                 {
-                    ;
-                    Entities.Product p1 = new Entities.Product(p, o1.Id, o1);
-                    context.Products.Add(p1);
-                    products.Add(p1);
-                    context.SaveChanges();
+                    Entities.Order o1 = new Entities.Order(CreateOrder());
+                    List<Entities.Product> products = new List<Entities.Product>();
+                    foreach (Entities.Product p in CreateProducts())
+                    {
 
+                        Entities.Product p1 = new Entities.Product(p, CreateOrder());
+                        //context.Products.Add(p1);
+                        products.Add(p1);
+                        // context.SaveChanges();
+
+                    }
+                    o1 = new Entities.Order(o1, products);
+                    context.Orders.Add(o1);
+                    context.SaveChanges();
                 }
-                o1 = new Entities.Order(o1, products);
-                context.Orders.Add(o1);
-                context.SaveChanges();
+                else
+                {
+                    ErrorMessage();
+                }
             }
         }
     }

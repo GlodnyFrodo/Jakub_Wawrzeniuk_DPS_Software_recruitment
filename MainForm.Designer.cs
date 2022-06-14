@@ -144,6 +144,7 @@
             // 
             // saveToDatabaseButton
             // 
+            this.saveToDatabaseButton.Enabled = false;
             this.saveToDatabaseButton.Location = new System.Drawing.Point(456, 460);
             this.saveToDatabaseButton.Name = "saveToDatabaseButton";
             this.saveToDatabaseButton.Size = new System.Drawing.Size(158, 38);
