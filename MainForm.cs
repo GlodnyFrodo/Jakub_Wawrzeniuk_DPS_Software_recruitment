@@ -19,6 +19,7 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
 
         }
 
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             displayProductsListView.View = View.Details;
@@ -105,7 +106,6 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
         uint OrderId = 0;
         private Entities.Order CreateOrder()
         {
-            
                 Entities.Order order = new Entities.Order(OrderId, nameTextBox.Text, surnameTextBox.Text, Convert.ToDateTime(dateOfBirthTextBox.Text), CreateProducts());
                 OrderId++;
                 return order;
@@ -125,18 +125,6 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
                     folder = @"" + fbd.SelectedPath + @"\";
-
-                }
-                else
-                {
-                    string error = $"Błędne dane zamówienia";
-                    MessageBox.Show(error);
-                }
-            }
-            using (SaveToXmlForm form = new SaveToXmlForm())
-            {
-                if (form.ShowDialog() == DialogResult.OK)
-                {
                     filenameForProducts = folder + "products.xml";
                     filenameForOrder = folder + "order.xml";
 
@@ -148,6 +136,33 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
                     displayProductsListView.View = View.Details;
 
                 }
+                else
+                {
+                    string error = $"Błędne dane zamówienia";
+                    MessageBox.Show(error);
+                }
+            }
+
+
+
+
+        }
+
+        private void dateOfBirthTextBox_Enter(object sender, EventArgs e)
+        {
+            if (dateOfBirthTextBox.Text == "YYYY-MM-DD")
+            {
+                dateOfBirthTextBox.Text = "";
+                dateOfBirthTextBox.ForeColor = Color.Black;
+            }
+        }
+
+        private void dateOfBirthTextBox_Leave(object sender, EventArgs e)
+        {
+            if (dateOfBirthTextBox.Text == "")
+            {
+                dateOfBirthTextBox.Text = "YYYY-MM-DD";
+                dateOfBirthTextBox.ForeColor = Color.Silver;
             }
         }
     }

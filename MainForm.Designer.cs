@@ -79,10 +79,14 @@
             // 
             // dateOfBirthTextBox
             // 
+            this.dateOfBirthTextBox.ForeColor = System.Drawing.SystemColors.InactiveCaption;
             this.dateOfBirthTextBox.Location = new System.Drawing.Point(148, 70);
             this.dateOfBirthTextBox.Name = "dateOfBirthTextBox";
             this.dateOfBirthTextBox.Size = new System.Drawing.Size(317, 25);
             this.dateOfBirthTextBox.TabIndex = 6;
+            this.dateOfBirthTextBox.Text = "YYYY-MM-DD";
+            this.dateOfBirthTextBox.Enter += new System.EventHandler(this.dateOfBirthTextBox_Enter);
+            this.dateOfBirthTextBox.Leave += new System.EventHandler(this.dateOfBirthTextBox_Leave);
             // 
             // nameTextBox
             // 

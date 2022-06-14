@@ -49,10 +49,14 @@
             // 
             // priceTextBox
             // 
+            this.priceTextBox.ForeColor = System.Drawing.SystemColors.InactiveCaption;
             this.priceTextBox.Location = new System.Drawing.Point(180, 52);
             this.priceTextBox.Name = "priceTextBox";
             this.priceTextBox.Size = new System.Drawing.Size(230, 29);
             this.priceTextBox.TabIndex = 12;
+            this.priceTextBox.Text = "0,00";
+            this.priceTextBox.Enter += new System.EventHandler(this.priceTextBox_Enter);
+            this.priceTextBox.Leave += new System.EventHandler(this.priceTextBox_Leave);
             // 
             // amountTextBox
             // 
@@ -73,9 +77,9 @@
             this.priceLabel.AutoSize = true;
             this.priceLabel.Location = new System.Drawing.Point(20, 55);
             this.priceLabel.Name = "priceLabel";
-            this.priceLabel.Size = new System.Drawing.Size(81, 21);
+            this.priceLabel.Size = new System.Drawing.Size(45, 21);
             this.priceLabel.TabIndex = 9;
-            this.priceLabel.Text = "Cena [szt.]";
+            this.priceLabel.Text = "Cena";
             // 
             // amountlabel
             // 

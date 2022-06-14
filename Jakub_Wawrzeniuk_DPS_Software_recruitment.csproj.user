@@ -16,8 +16,5 @@
     <Compile Update="ProductParameters.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="SaveToXML.cs">
-      <SubType>Form</SubType>
-    </Compile>
   </ItemGroup>
 </Project>
