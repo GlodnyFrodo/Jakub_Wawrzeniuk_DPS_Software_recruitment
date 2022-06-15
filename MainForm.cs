@@ -19,6 +19,7 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
             InitializeComponent();
 
         }
+        //To display errors
         private void ErrorMessage()
         {
             string error = $"Błędne dane zamówienia";
@@ -32,7 +33,7 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
             ButtonEnable();
             displayProductsListView.LabelEdit = true;
         }
-
+        //button unlocking
         private void ButtonEnable()
         {
             this.deleteProductButton.Enabled = (this.displayProductsListView.Items.Count > 0);
@@ -41,6 +42,21 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
             this.modifyProductButton.Enabled = (this.displayProductsListView.Items.Count > 0);
         }
 
+        private void nameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ButtonEnable();
+        }
+
+        private void surnameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ButtonEnable();
+        }
+
+        private void dateOfBirthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ButtonEnable();
+        }
+        //Adding a new product
         private void addProductButton_Click(object sender, EventArgs e)
         {
             using (AddProductForm form = new AddProductForm())
@@ -63,7 +79,7 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
                 }
             }
         }
-
+        //To delete an product
         private void deleteProductButton_Click(object sender, EventArgs e)
         {
             using (DeleteProductForm form = new DeleteProductForm())
@@ -84,6 +100,7 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
             }
         }
 
+        //To modify selected product
         private void changeProductButton_Click(object sender, EventArgs e)
         {
             using (ModifyProductForm form = new ModifyProductForm())
@@ -114,7 +131,7 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
                 }
             }
         }
-        
+        //Creating products array, preparing for serialization
         private Entities.Product[] CreateProducts()
         {
             int id = 0;
@@ -129,6 +146,8 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
 
             return selectedProducts;
         }
+
+        //Creating order, preparing for serialization
         int OrderId = 0;
         private Entities.Order CreateOrder()
         {
@@ -140,6 +159,8 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
 
         private static string filenameForProducts = "products.xml";
         private static string filenameForOrder = "order.xml";
+
+        //Saving to xml file logic
         private void saveToXmlButton_Click(object sender, EventArgs e)
         {
             string folder = "";
@@ -185,30 +206,7 @@ namespace Jakub_Wawrzeniuk_DPS_Software_recruitment
 
         }
 
-        private void dateOfBirthTextBox_Enter(object sender, EventArgs e)
-        {
-            if (dateOfBirthTextBox.Text == "YYYY-MM-DD")
-            {
-                dateOfBirthTextBox.Text = "";
-                dateOfBirthTextBox.ForeColor = Color.Black;
-            }
-        }
-
-        private void nameTextBox_TextChanged(object sender, EventArgs e)
-        {
-            ButtonEnable();
-        }
-
-        private void surnameTextBox_TextChanged(object sender, EventArgs e)
-        {
-            ButtonEnable();
-        }
-
-        private void dateOfBirthTextBox_TextChanged(object sender, EventArgs e)
-        {
-            ButtonEnable();
-        }
-
+        //save to db logic - issues
         private void saveToDatabaseButton_Click(object sender, EventArgs e)
         {
 
